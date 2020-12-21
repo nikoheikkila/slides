@@ -1,0 +1,29 @@
+@import "../../themes/reveal-hugo/assets/reveal-js/css/theme/template/mixins.scss";
+@import "../../themes/reveal-hugo/assets/reveal-js/css/theme/template/settings.scss";
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&family=Merriweather+Sans:wght@700&display=swap");
+
+// Layout
+$blockMargin: 40px;
+
+// Colors
+$backgroundColor: #fff;
+$mainColor: #222;
+$headingColor: #009f77;
+$linkColor: #fb8793;
+$linkColorHover: #ff465a;
+$selectionBackgroundColor: #ff465a;
+
+// Selection
+$selectionBackgroundColor: #200a74;
+$selectionColor: #fff58b;
+
+// Typography
+$mainFont: "Merriweather", serif;
+$mainFontSize: 36px;
+$headingFont: "Merriweather Sans", sans-serif;
+$headingLineHeight: 1.5;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 700;
+
+@import "../../themes/reveal-hugo/assets/reveal-js/css/theme/template/theme.scss";

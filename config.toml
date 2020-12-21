@@ -1,0 +1,23 @@
+baseURL = "https://slides.nikoheikkila.fi/"
+languageCode = "en-us"
+title = "Presentation Slides by Niko Heikkilä"
+theme = "reveal-hugo"
+
+[author]
+name = "Niko Heikkilä"
+
+[markup.highlight]
+codeFences = false
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[outputFormats.Reveal]
+baseName = "index"
+mediaType = "text/html"
+isHTML = true
+
+[params.reveal_hugo]
+custom_theme = "stylesheets/futurice.scss"
+custom_theme_compile = true
+highlight_theme = "night-owl"

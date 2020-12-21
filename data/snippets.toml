@@ -1,0 +1,10 @@
+thanks = '''
+## Thank You
+
+```py
+for question in questions:
+  shoot(question)
+```
+
+Check out more of my presentations at [slides.nikoheikkila.fi](https://slides.nikoheikkila.fi)
+'''
