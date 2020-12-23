@@ -12,6 +12,7 @@ $headingColor: #009f77;
 $linkColor: #fb8793;
 $linkColorHover: #ff465a;
 $selectionBackgroundColor: #ff465a;
+$monospaceColor: #FF69B4;
 
 // Selection
 $selectionBackgroundColor: #200a74;
@@ -19,11 +20,35 @@ $selectionColor: #fff58b;
 
 // Typography
 $mainFont: "Merriweather", serif;
-$mainFontSize: 36px;
+$mainFontSize: 30px;
 $headingFont: "Merriweather Sans", sans-serif;
 $headingLineHeight: 1.5;
 $headingLetterSpacing: normal;
 $headingTextTransform: none;
 $headingFontWeight: 700;
+$smallTextSize: 22px;
 
 @import "../../themes/reveal-hugo/assets/reveal-js/css/theme/template/theme.scss";
+
+.reveal ul {
+    list-style: none;
+
+    li {
+        padding-bottom: 10px;
+    }
+}
+
+.fragment {
+  font-size: $smallTextSize;
+}
+
+code {
+    color: $monospaceColor;
+}
+
+.reveal pre code {
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 17px;
+  line-height: 1.75em;
+}
