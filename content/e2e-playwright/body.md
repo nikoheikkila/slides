@@ -1,33 +1,80 @@
-## Effortless End-to-End Testing with Microsoft Playwright
+# Effortless End-to-End Testing with Microsoft Playwright
 
 {{% note %}}
+In this talk, I will explain how browser-based end-to-end testing has advanced a lot lately thanks to tools like **Cypress** and **Playwright**.
 
-- hello
+In many contexts, we can now ditch the Robot Framework and Selenium entirely for stable, fast, and enjoyable automated testing.
 
+It's of course up to you and your project, whether you should do this, but there's no excuses to stay in the _Seleniumland_ anymore if you don't want to.
 {{% /note %}}
 
-Niko Heikkilä – 8.1.2020
+---
+
+## We. Make. Tests. 🛠
+
+{{% fragment %}}Unit tests{{% /fragment %}}
+{{% fragment %}}Integration tests{{% /fragment %}}
+{{% fragment %}}End-to-end tests{{% /fragment %}}
+
+{{% note %}}
+A reminder in case you wonder what the most typical tests are:
+
+- **Unit tests:** low-level but important building blocks
+- **Integration tests:** combining several smaller features together
+- **End-to-end tests:** presenting a whole use flow often from the business perspective
+{{% /note %}}
 
 ---
 
-### It Doesn't Have to Hurt
+## It Doesn't Have to Hurt 🤕
+
+What happens when tests are…
+
+{{% fragment %}}unstable?{{% /fragment %}}
+{{% fragment %}}slow to execute?{{% /fragment %}}
+{{% fragment %}}difficult to write?{{% /fragment %}}
+{{% fragment %}}painful to maintain?{{% /fragment %}}
+
+{{% note %}}
+- unstable tests harm by being unreliable
+- slow tests harm by lengthening the feedback loop
+- difficult test API equals unreadable tests
+- the above add up to maintenance -> tests are forsaken
+{{% /note %}}
 
 ---
 
-![Tests by team](https://f001.backblazeb2.com/file/nikoheikkila-fi/DevQATests.png)
+You likely don't run or maintain them. 😭
 
 ---
 
-## How Playwright Solves The Issues?
-
----
-
-### Fast execution of browser interactions through _asynchronous_ methods
-
-{{% fragment %}}perform multiple actions concurrently{{% /fragment %}}
+Different teams produce _different_ tests. ⚔️
 
 {{% fragment %}}
+![Tests by team](https://f001.backblazeb2.com/file/nikoheikkila-fi/DevQATests.png)
+{{% /fragment %}}
 
+{{% note %}}
+In some organizations, developers and QA regularly work in siloes and produce two very different test suites.
+
+Developers focus on low-hanging fruits testing the code they've written while QA is responsible for ensuring the features work from the business perspective.
+{{% /note %}}
+
+---
+
+## How Playwright Solves the Issues?
+
+{{% note %}}
+I'm going to focus on Playwright by Microsoft. Keep in mind that Cypress is another popular testing tool and most of the good sides apply to it as well.
+{{% /note %}}
+
+---
+
+### Fast Execution of Browser Interactions through Asynchronous Methods
+
+{{% fragment %}}Perform multiple actions concurrently – never `sleep` again.{{% /fragment %}}
+
+{{% fragment %}}
 ```js
 // wait for inputs to be filled with Promise.all() or Promise.allSettled()
 await Promise.all([
@@ -38,37 +85,46 @@ await Promise.all([
 // Executed last
 await page.click('[data-test-id=login]');
 ```
-
 {{% /fragment %}}
 
----
-
-### Write tests in modern **JavaScript** or **TypeScript**
-
-- {{% fragment %}}use recent enough version of Node.js{{% /fragment %}}
-- {{% fragment %}}use any assertion library (eg. `assert`, `chai`, or `expect`){{% /fragment %}}
-- {{% fragment %}}use any test runner (for now _Jest_ is recommended){{% /fragment %}}
-- {{% fragment %}}support for **Python**, **C#**, and **Go** languages are in preview{{% /fragment %}}
+{{% note %}}
+`page` object methods return Promises which you can await one-by-one or through `Promise.all()`.
+{{% /note %}}
 
 ---
 
-{{% section %}}
+### Write Tests in Modern Language Syntax
 
-### Maintain large test suites easily with Page Object Models
+{{% fragment %}}benefit from all the features of **TypeScript**{{% /fragment %}}
+{{% fragment %}}use any assertion library (eg. `assert`, `chai`, or `expect`){{% /fragment %}}
+{{% fragment %}}use any test runner (for now _Jest_ is recommended){{% /fragment %}}
+{{% fragment %}}support for **Python**, **C#**, and **Go** languages are in preview{{% /fragment %}}
+
+{{% note %}}
+- remember to use recent enough version of Node.js and configure `tsconfig.json` correctly
+- AVA test runner's parallel runs might cause issues with shared page objects
+- languages other than JS/TS are not considered production-ready yet, but fine for experiments and proof-of-concepts
+{{% /note %}}
 
 ---
 
-The earlier login example becomes:
+### Maintain Large Test Suites Easily with Page Object Models
 
+{{% fragment %}}
+The earlier login example becomes…
+{{% /fragment %}}
+
+{{% fragment %}}
 ```js
 const loginPage = new LoginPage(page);
 loginPage.fillCredentials(user)
 loginPage.login();
 ```
+{{% /fragment %}}
 
 ---
 
-### Abstraction Layer
+### Abstraction Layer (POM)
 
 ```ts
 class LoginPage() {
@@ -87,62 +143,67 @@ class LoginPage() {
 }
 ```
 
-{{% /section %}}
-
 ---
 
-### Record new tests instead of writing from scratch
+### Record New Tests Instead of Writing From Scratch
 
 {{% fragment %}}
-
 ```bash
-npx playwright-cli codegen $URL
+npx playwright-cli codegen https://futurice.com | tee -a test.js
 ```
-
-`$URL` should be accessible from the network you're running the test.
-
 {{% /fragment %}}
 
+{{% fragment %}}👆🏼 The URL should be accessible from the network you're running the test!{{% /fragment %}}
+
+{{% note %}}
+Here the command `tee -a` outputs to both _STDOUT_ and file `test.js` for easier capture.
+{{% /note %}}
+
 ---
 
-### Provides stable results due to the auto-waiting feature
+### Provides Stable Results Due to the Auto-Waiting Mechanism
 
-- {{% fragment %}}operations automatically wait until the target element is actionable{{% /fragment %}}
-- {{% fragment %}}use the `async/await` pattern in code{{% /fragment %}}
+{{% fragment %}}operations automatically wait until the target element is actionable{{% /fragment %}}
+{{% fragment %}}use the `async/await` pattern in code{{% /fragment %}}
 
 ---
 
-### Support for **Continuous Integration (CI)** and **Docker** execution
+### Support for Continuous Integration and Docker Execution
 
-{{% fragment %}}
 Naive example 👇🏼
 
+{{% fragment %}}
 ```dockerfile
 FROM mcr.microsoft.com/playwright:bionic
 
+WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
 RUN yarn --frozen-lockfile
+COPY . .
 
 CMD ['yarn', 'test:e2e']
 ```
-
 {{% /fragment %}}
 
 ---
 
-### Work It Together
+## Demo #1
+
+Example tests for a React SPA.
+
+{{% note %}}
+Redacted due to NDA material.
+{{% /note %}}
 
 ---
 
-## DEMO #1
-
-Basic tests for a React SPA.
-
----
-
-## DEMO #2
+## Demo #2
 
 Recording new tests.
+
+{{% note %}}
+We'll use the code generation feature of `playwright-cli` while doing simple operations on a webpage.
+{{% /note %}}
 
 ---
 
