@@ -18,6 +18,11 @@ mediaType = "text/html"
 isHTML = true
 
 [params.reveal_hugo]
+history = true
+hash = true
+transition = 'fade'
+transition_speed = 'fast'
+controls_tutorial = true
 custom_theme = "stylesheets/futurice.scss"
 custom_theme_compile = true
 highlight_theme = "night-owl"
