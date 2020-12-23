@@ -1,6 +1,6 @@
 @import "../../themes/reveal-hugo/assets/reveal-js/css/theme/template/mixins.scss";
 @import "../../themes/reveal-hugo/assets/reveal-js/css/theme/template/settings.scss";
-@import url("https://fonts.googleapis.com/css2?family=Merriweather&family=Merriweather+Sans:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
 
 // Layout
 $blockMargin: 40px;
@@ -25,21 +25,25 @@ $headingFont: "Merriweather Sans", sans-serif;
 $headingLineHeight: 1.5;
 $headingLetterSpacing: normal;
 $headingTextTransform: none;
-$headingFontWeight: 700;
-$smallTextSize: 22px;
+$headingFontWeight: 800;
+
+$heading1Size: 2.75em;
+$heading2Size: 2.25em;
+$heading3Size: 2.0em;
+$smallTextSize: 0.8em;
 
 @import "../../themes/reveal-hugo/assets/reveal-js/css/theme/template/theme.scss";
 
 .reveal ul {
-    list-style: none;
-
     li {
-        padding-bottom: 10px;
+        line-height: 1.75em;
     }
 }
 
 .fragment {
+  display: block;
   font-size: $smallTextSize;
+  line-height: 2.5em;
 }
 
 code {
