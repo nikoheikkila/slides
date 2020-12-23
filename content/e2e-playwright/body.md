@@ -10,6 +10,8 @@ It's of course up to you and your project, whether you should do this, but there
 
 ---
 
+{{< slide template="blue" >}}
+
 ## We. Make. Tests. 🛠
 
 {{% fragment %}}Unit tests{{% /fragment %}}
@@ -44,6 +46,8 @@ What happens when tests are…
 
 ---
 
+{{< slide template="green" >}}
+
 You likely don't run or maintain them. 😭
 
 ---
@@ -61,6 +65,8 @@ Developers focus on low-hanging fruits testing the code they've written while QA
 {{% /note %}}
 
 ---
+
+{{< slide template="blue" >}}
 
 ## How Playwright Solves the Issues?
 
@@ -187,6 +193,8 @@ CMD ['yarn', 'test:e2e']
 
 ---
 
+{{< slide template="green" >}}
+
 ## Demo #1
 
 Example tests for a React SPA.
@@ -197,9 +205,11 @@ Redacted due to NDA material.
 
 ---
 
+{{< slide template="blue" >}}
+
 ## Demo #2
 
-Recording new tests.
+Recording new tests from the command-line.
 
 {{% note %}}
 We'll use the code generation feature of `playwright-cli` while doing simple operations on a webpage.

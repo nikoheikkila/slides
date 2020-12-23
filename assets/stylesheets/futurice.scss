@@ -1,22 +1,35 @@
 @import "../../themes/reveal-hugo/assets/reveal-js/css/theme/template/mixins.scss";
 @import "../../themes/reveal-hugo/assets/reveal-js/css/theme/template/settings.scss";
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap");
+
+// Palette
+$jadeGreen: #009f77;
+$deepBlue: #200a74;
+$pigPink: #fcd4e1;
+$radicalRed: #ff465a;
+$lightGeraldine: #fb8793;
+$viking: #51d0d3;
+$lightFrenchPass: #cdedfd;
+$goldenRod: #ffcd73;
+$lightDolly: #fff58b;
+$black: #000000;
+$white: #ffffff;
+$lightAlto: #d9d9d9;
 
 // Layout
 $blockMargin: 40px;
 
 // Colors
-$backgroundColor: #fff;
-$mainColor: #222;
-$headingColor: #009f77;
-$linkColor: #fb8793;
-$linkColorHover: #ff465a;
-$selectionBackgroundColor: #ff465a;
-$monospaceColor: #FF69B4;
+$backgroundColor: $white;
+$mainColor: $black;
+$headingColor: $jadeGreen;
+$linkColor: $radicalRed;
+$linkColorHover: $lightGeraldine;
+$monospaceColor: $radicalRed;
 
 // Selection
-$selectionBackgroundColor: #200a74;
-$selectionColor: #fff58b;
+$selectionBackgroundColor: $jadeGreen;
+$selectionColor: inherit;
 
 // Typography
 $mainFont: "Merriweather", serif;
@@ -29,15 +42,15 @@ $headingFontWeight: 800;
 
 $heading1Size: 2.75em;
 $heading2Size: 2.25em;
-$heading3Size: 2.0em;
+$heading3Size: 2em;
 $smallTextSize: 0.8em;
 
 @import "../../themes/reveal-hugo/assets/reveal-js/css/theme/template/theme.scss";
 
 .reveal ul {
-    li {
-        line-height: 1.75em;
-    }
+  li {
+    line-height: 1.75em;
+  }
 }
 
 .fragment {
@@ -47,7 +60,7 @@ $smallTextSize: 0.8em;
 }
 
 code {
-    color: $monospaceColor;
+  color: $monospaceColor;
 }
 
 .reveal pre code {
@@ -55,4 +68,28 @@ code {
   padding: 20px;
   font-size: 17px;
   line-height: 1.75em;
+}
+
+section[data-template="blue"] {
+  &,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $lightDolly;
+  }
+}
+
+section[data-template="green"] {
+  &,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $white;
+  }
 }
